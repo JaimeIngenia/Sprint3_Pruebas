@@ -1,0 +1,32 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.header{
+    border: solid 1px;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    align-items: center;
+}
+.botonDark {
+    width: 148px;
+    height: 43px;
+    border-radius: 61px;
+    color: #6809e1;
+    font-size: 14px;
+    font-weight: 400;
+    border: 1px solid #6809e1;
+    background-color: white;
+    outline: none;
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    transition: all 1s ease;
+    cursor: pointer;
+  }
+  .imagen{
+    border: solid 1px;
+    display: flex;
+    justify-content: center;
+  }

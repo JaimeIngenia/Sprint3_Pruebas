@@ -1,0 +1,17 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+.busqueda{
+    border: solid 1px;
+    display: flex;
+    justify-content: center;
+}
+
+.autocompletacion{
+  background-color: blue;
+  height: 300PX;
+  width: 200px;
+}

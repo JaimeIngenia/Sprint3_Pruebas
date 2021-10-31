@@ -5,9 +5,9 @@ import styles from "./Header.module.css"
 // import unos from '../../../public/images/unos.svg';
 
 
-const Header = () => {
+const Header = ({setDarkMode , darkMode}) => {
     //Hooks
-    const [darkMode,setDarkMode]=useState(false);
+
     //Funciónes
     const manejarClick =()=>{
         setDarkMode(!darkMode)
@@ -17,7 +17,8 @@ const Header = () => {
         <div className="styles headerGeneral">
             <div className={styles.header}>
                 <img src={uno} alt="" />
-                <button className={styles.botonDark}
+                {/* ------------------------Boton------------------------ */}
+                <button className={darkMode?styles.botonDark:styles.botonLigth}
                 onClick={manejarClick}
                 >{darkMode? "MODE DARK" : 'MODE LIGTH' }</button>
             </div>

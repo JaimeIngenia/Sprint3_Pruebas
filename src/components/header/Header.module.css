@@ -25,6 +25,21 @@
     transition: all 1s ease;
     cursor: pointer;
   }
+  .botonLigth {
+    width: 148px;
+    height: 43px;
+    border-radius: 61px;
+    color: white;
+    font-size: 14px;
+    font-weight: 400;
+    border: 1px solid white;
+    background-color: black;
+    outline: none;
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    transition: all 1s ease;
+    cursor: pointer;
+  }
   .imagen{
     border: solid 1px;
     display: flex;

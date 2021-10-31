@@ -10,6 +10,8 @@ const Busqueda = () => {
     useEffect(() => {
         if(gif.length>2){
             setMostrarAutoCompletacion(true);
+        }else{
+            setMostrarAutoCompletacion(false);
         }
         console.clear();
         let url = fetch("https://api.giphy.com/v1/gifs/search/tags"+"?"+

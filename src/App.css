@@ -2,6 +2,15 @@
   text-align: center;
 }
 
+.AppDark {
+  text-align: center;
+  background: black;
+}
+
+.AppLigth {
+  text-align: center;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

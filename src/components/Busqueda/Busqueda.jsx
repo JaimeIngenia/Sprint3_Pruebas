@@ -8,6 +8,7 @@ const Busqueda = () => {
     const[mostrarAutoCompletacion,setMostrarAutoCompletacion]=useState(false)
     const [sugerencias,setSugerencias]=useState([])
     const [loading,setLoading]=useState(false)
+    const [gifSugerido,setGifSugerido]=useState("")
 
     useEffect(() => {
         if(gif.length>2){
@@ -39,7 +40,16 @@ const Busqueda = () => {
         
     },[gif]);
 
-
+    useEffect(()=>{
+        let url2= fetch(`https://api.giphy.com/v1/gifs/search?api_key=nUNTIQy4xKKNgSXeNU5e11JARe54a9Lo&q=${gifSugerido}&limit=25&offset=0&rating=g&lang=en`)
+        url2
+        .then((res2)=>{
+            return res2.json();
+        })
+        .then((data2)=>{
+            console.log(data2);
+        })
+    },[gifSugerido])
     //-----------------------------------funciones Eventos-------------------------------------
     const manejoInput=(e)=>{
         setGif(e.target.value)
@@ -47,25 +57,25 @@ const Busqueda = () => {
         console.log("hola"+"andres");;
     }
     const manejoSugerencia=(e)=>{
-        console.log("Hiciste click");
+        setGifSugerido(e.target.innerText)
+        //console.log(e.target.innerText);
+        // console.log("Hiciste click");
     }
 
 
     return (
-        <div className={styles.busquedaGeneral}>
-            <div className={styles.busqueda}>
+        <div className={styles.App}>
+
                 <input type="text" 
                 placeholder="busca un gif"
                 onChange={manejoInput}
                 value={gif}/>
                 <button>
-                    <img src={tres} alt="" />
+                    <img src={tres} className={styles.lupa} alt="" />
                 </button>
-                {loading===true?<h1>Loading...</h1>:null}
-                
-            </div>
-            {/* ------------------------Bloque de autocompletado------------------------ */}
-            {mostrarAutoCompletacion === true? 
+                {/* {loading===true?<h1>Loading...</h1>:null} */}
+                {/* ------------------------Bloque de autocompletado------------------------ */}
+                {mostrarAutoCompletacion === true? 
                 <div className={styles.autocompletacion}>
                     {
                     sugerencias.map((sugerencia)=>{
@@ -75,6 +85,8 @@ const Busqueda = () => {
                 </div>
                 :
                 null}
+
+
         </div>
     );
 }

@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Busqueda.module.css'
 import tres from '../../assets/images/icon-search.svg'
+// import Card from '../Card/Card';
 
-const Busqueda = () => {
+const Busqueda = ({clickSugerido,setClickSugerido}) => {
     //-------------------------------Hooks------------------------------------
     const[gif,setGif] =useState("");
     const[mostrarAutoCompletacion,setMostrarAutoCompletacion]=useState(false)
     const [sugerencias,setSugerencias]=useState([])
     const [loading,setLoading]=useState(false)
     const [gifSugerido,setGifSugerido]=useState("")
+    // const [clickSugerido,setClickSugerido]=useState([])
 
     useEffect(() => {
         if(gif.length>2){
@@ -48,13 +50,14 @@ const Busqueda = () => {
         })
         .then((data2)=>{
             console.log(data2);
+            setClickSugerido(data2.data);
         })
     },[gifSugerido])
     //-----------------------------------funciones Eventos-------------------------------------
     const manejoInput=(e)=>{
         setGif(e.target.value)
         console.log(gif)
-        console.log("hola"+"andres");;
+        console.log("hola"+"andres");
     }
     const manejoSugerencia=(e)=>{
         setGifSugerido(e.target.innerText)
@@ -65,7 +68,6 @@ const Busqueda = () => {
 
     return (
         <div className={styles.App}>
-
                 <input type="text" 
                 placeholder="busca un gif"
                 onChange={manejoInput}
@@ -85,8 +87,17 @@ const Busqueda = () => {
                 </div>
                 :
                 null}
-
-
+                 {/* <div>
+                    {clickSugerido.map((item)=>{
+                        return (
+                            <div>
+                                <img className={styles.imagen} src={item.images.downsized_medium.url} alt="" />
+                            </div>
+                        )
+                    })} 
+                </div>  */}
+                
+     
         </div>
     );
 }

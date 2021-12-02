@@ -9,6 +9,8 @@ function App() {
   const [darkMode,setDarkMode]=useState(true);
   const [gifSugerido,setGifSugerido]=useState("")
   const [clickSugerido,setClickSugerido]=useState([])
+  const [clickNormal, setClickNormal] = useState(false);
+  const [sugerencias,setSugerencias]=useState([])
   return (
     <div className={ !darkMode? styles.AppDark : styles.AppLigth }>
 
@@ -19,10 +21,17 @@ function App() {
       <Busqueda 
       clickSugerido={clickSugerido}
       setClickSugerido={setClickSugerido}
+      clickNormal={clickNormal}
+      setClickNormal={setClickNormal}
+      sugerencias={sugerencias}
+      setSugerencias={setSugerencias}
+
       />
       <Resultado
       clickSugerido={clickSugerido}
       setClickSugerido={setClickSugerido}
+      clickNormal={clickNormal}
+      setClickNormal={setClickNormal}
       />
 
     </div>

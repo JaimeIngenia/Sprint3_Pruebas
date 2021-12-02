@@ -3,13 +3,14 @@ import styles from './Busqueda.module.css'
 import tres from '../../assets/images/icon-search.svg'
 // import Card from '../Card/Card';
 
-const Busqueda = ({clickSugerido,setClickSugerido}) => {
+const Busqueda = ({clickSugerido,setClickSugerido,clickNormal,setClickNormal,sugerencias,setSugerencias}) => {
     //-------------------------------Hooks------------------------------------
     const[gif,setGif] =useState("");
     const[mostrarAutoCompletacion,setMostrarAutoCompletacion]=useState(false)
-    const [sugerencias,setSugerencias]=useState([])
+    // const [sugerencias,setSugerencias]=useState([])
     const [loading,setLoading]=useState(false)
     const [gifSugerido,setGifSugerido]=useState("")
+    // const [clickNormal, setClickNormal] = useState(false);
     // const [clickSugerido,setClickSugerido]=useState([])
 
     useEffect(() => {
@@ -18,7 +19,7 @@ const Busqueda = ({clickSugerido,setClickSugerido}) => {
         }else{
             setMostrarAutoCompletacion(false);
         }
-        console.clear();
+        //console.clear();
         let url = fetch("https://api.giphy.com/v1/gifs/search/tags"+"?"+
         "api_key=nUNTIQy4xKKNgSXeNU5e11JARe54a9Lo"+"&"+
         "q="+gif)
@@ -56,25 +57,37 @@ const Busqueda = ({clickSugerido,setClickSugerido}) => {
     //-----------------------------------funciones Eventos-------------------------------------
     const manejoInput=(e)=>{
         setGif(e.target.value)
-        console.log(gif)
-        console.log("hola"+"andres");
+        // console.log(gif)
+        // console.log("hola"+"andres");
     }
     const manejoSugerencia=(e)=>{
         setGifSugerido(e.target.innerText)
         //console.log(e.target.innerText);
         // console.log("Hiciste click");
     }
-
-
+    const manejoBoton=(e)=>{
+        setClickNormal(!clickNormal)
+        
+    }
+    const manejoClickBtnCristian=(e)=>{
+        e.preventDefault();
+        // setBuscar(true);
+        setGifSugerido(gif)
+        setMostrarAutoCompletacion(false);
+        
+    }
     return (
         <div className={styles.App}>
+            <form onSubmit={manejoClickBtnCristian}>
                 <input type="text" 
                 placeholder="busca un gif"
                 onChange={manejoInput}
                 value={gif}/>
-                <button>
+                <button onClick={manejoBoton} > 
                     <img src={tres} className={styles.lupa} alt="" />
                 </button>
+            </form>
+
                 {/* {loading===true?<h1>Loading...</h1>:null} */}
                 {/* ------------------------Bloque de autocompletado------------------------ */}
                 {mostrarAutoCompletacion === true? 
@@ -87,6 +100,7 @@ const Busqueda = ({clickSugerido,setClickSugerido}) => {
                 </div>
                 :
                 null}
+
                  {/* <div>
                     {clickSugerido.map((item)=>{
                         return (
@@ -96,6 +110,17 @@ const Busqueda = ({clickSugerido,setClickSugerido}) => {
                         )
                     })} 
                 </div>  */}
+                {clickNormal? console.log( sugerencias):null}
+                 {/* {clickNormal? sugerencias.forEach((props)=>{
+                return (<p>{props.images.fixed_heigth.url}</p>) 
+                 }):null} */}
+                 {/* {clickNormal? sugerencias.forEach((props)=>{
+                return (<p>{props.images.fixed_heigth.url}</p>) 
+                }):null}
+                 */}
+        
+
+
                 
      
         </div>

@@ -3,7 +3,7 @@ import styles from './Busqueda.module.css'
 import tres from '../../assets/images/icon-search.svg'
 // import Card from '../Card/Card';
 
-const Busqueda = ({clickSugerido,setClickSugerido,clickNormal,setClickNormal,sugerencias,setSugerencias}) => {
+const Busqueda = ({clickSugerido,setClickSugerido,clickNormal,setClickNormal,sugerencias,setSugerencias,setTrending,trending}) => {
     //-------------------------------Hooks------------------------------------
     const[gif,setGif] =useState("");
     const[mostrarAutoCompletacion,setMostrarAutoCompletacion]=useState(false)
@@ -12,6 +12,22 @@ const Busqueda = ({clickSugerido,setClickSugerido,clickNormal,setClickNormal,sug
     const [gifSugerido,setGifSugerido]=useState("")
     // const [clickNormal, setClickNormal] = useState(false);
     // const [clickSugerido,setClickSugerido]=useState([])
+    // const [trending,setTrending]=useState([])
+
+    useEffect(()=>{
+        let peticion = fetch("https://api.giphy.com/v1/gifs/trending?api_key=nUNTIQy4xKKNgSXeNU5e11JARe54a9Lo&limit=25&rating=g");
+        peticion
+            .then((res0)=>{
+                return res0.json();
+            })
+            .then ((data0)=>{
+                setTrending(data0.data);
+            })
+            .catch((error)=>{
+                alert(error);
+            })
+    },[]);
+
 
     useEffect(() => {
         if(gif.length>2){
@@ -110,6 +126,20 @@ const Busqueda = ({clickSugerido,setClickSugerido,clickNormal,setClickNormal,sug
                         )
                     })} 
                 </div>  */}
+
+                
+                {/* <div>
+                    {trending.map((item)=>{
+                        return (
+                            <div>
+                                <img className={styles.imagen} src={item.images.downsized_medium.url} alt="" />
+                            </div>
+                        )
+                    })} 
+                </div>   */}
+
+
+                
                 {clickNormal? console.log( sugerencias):null}
                  {/* {clickNormal? sugerencias.forEach((props)=>{
                 return (<p>{props.images.fixed_heigth.url}</p>) 

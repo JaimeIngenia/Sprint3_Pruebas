@@ -11,6 +11,7 @@ function App() {
   const [clickSugerido,setClickSugerido]=useState([])
   const [clickNormal, setClickNormal] = useState(false);
   const [sugerencias,setSugerencias]=useState([])
+  const [trending,setTrending]=useState([])
   return (
     <div className={ !darkMode? styles.AppDark : styles.AppLigth }>
 
@@ -25,6 +26,9 @@ function App() {
       setClickNormal={setClickNormal}
       sugerencias={sugerencias}
       setSugerencias={setSugerencias}
+      trending={trending}
+      setTrending={setTrending}
+
 
       />
       <Resultado
@@ -32,6 +36,8 @@ function App() {
       setClickSugerido={setClickSugerido}
       clickNormal={clickNormal}
       setClickNormal={setClickNormal}
+      trending={trending}
+      setTrending={setTrending}
       />
 
     </div>

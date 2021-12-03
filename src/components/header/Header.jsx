@@ -15,6 +15,7 @@ const Header = ({setDarkMode , darkMode}) => {
     
     return (
         <div className="styles headerGeneral">
+            <div className={styles.linea}></div>
             <div className={styles.header}>
                 <img src={uno} alt="" />
                 {/* ------------------------Boton------------------------ */}
@@ -22,6 +23,10 @@ const Header = ({setDarkMode , darkMode}) => {
                 onClick={manejarClick}
                 >{darkMode? "MODE DARK" : 'MODE LIGTH' }</button>
             </div>
+            <div className={styles.titulo}>
+                <h1 className={styles.mini}>!Inspírate y busca los mejores&nbsp;<b> GIFS</b> <spam className={styles.spam}>!</spam> </h1>
+            </div>
+            
             <div className={styles.imagen}>
                 <img src={dos} alt="" />
             </div>

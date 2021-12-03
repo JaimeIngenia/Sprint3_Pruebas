@@ -45,3 +45,30 @@
     display: flex;
     justify-content: center;
   }
+  .titulo{
+    display: flex;
+    flex-direction: row;
+    color: #572EE5;
+    justify-content: center; 
+  }
+  .mini{
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+    font-family: Arial;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 42px;
+    text-align: center;
+
+  }
+  .linea{
+    height: 6px;
+    width: 100%;
+    background-color: #6809E1;
+    margin-bottom: 26px;
+  }
+  .spam{
+    font-weight:2;
+  }

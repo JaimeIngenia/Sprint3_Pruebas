@@ -9,19 +9,21 @@ const Busqueda = ({clickSugerido,setClickSugerido,clickNormal,setClickNormal,sug
     const[mostrarAutoCompletacion,setMostrarAutoCompletacion]=useState(false)
     // const [sugerencias,setSugerencias]=useState([])
     const [loading,setLoading]=useState(false)
-    const [gifSugerido,setGifSugerido]=useState("")
+    const [gifSugerido,setGifSugerido]=useState("");
     // const [clickNormal, setClickNormal] = useState(false);
     // const [clickSugerido,setClickSugerido]=useState([])
     // const [trending,setTrending]=useState([])
 
     useEffect(()=>{
         let peticion = fetch("https://api.giphy.com/v1/gifs/trending?api_key=nUNTIQy4xKKNgSXeNU5e11JARe54a9Lo&limit=25&rating=g");
+        setLoading(true);
         peticion
             .then((res0)=>{
                 return res0.json();
             })
             .then ((data0)=>{
                 setTrending(data0.data);
+                setLoading(false);
             })
             .catch((error)=>{
                 alert(error);
@@ -54,13 +56,12 @@ const Busqueda = ({clickSugerido,setClickSugerido,clickNormal,setClickNormal,sug
             })            
             .catch ((error)=>{
                 console.log("Algo salió mal");
-            })
-
-        
+            }) 
     },[gif]);
 
     useEffect(()=>{
         let url2= fetch(`https://api.giphy.com/v1/gifs/search?api_key=nUNTIQy4xKKNgSXeNU5e11JARe54a9Lo&q=${gifSugerido}&limit=25&offset=0&rating=g&lang=en`)
+        setLoading(true);
         url2
         .then((res2)=>{
             return res2.json();
@@ -68,18 +69,25 @@ const Busqueda = ({clickSugerido,setClickSugerido,clickNormal,setClickNormal,sug
         .then((data2)=>{
             console.log(data2);
             setClickSugerido(data2.data);
+            setLoading(false);
         })
     },[gifSugerido])
     //-----------------------------------funciones Eventos-------------------------------------
     const manejoInput=(e)=>{
         setGif(e.target.value)
+        if (gif===""){
+            setLoading(false);
+        }
+
         // console.log(gif)
-        // console.log("hola"+"andres");
+        // console.log("hola"+"andres");   
     }
     const manejoSugerencia=(e)=>{
         setGifSugerido(e.target.innerText)
+        setGif("");
         //console.log(e.target.innerText);
         // console.log("Hiciste click");
+        
     }
     const manejoBoton=(e)=>{
         setClickNormal(!clickNormal)
@@ -89,8 +97,8 @@ const Busqueda = ({clickSugerido,setClickSugerido,clickNormal,setClickNormal,sug
         e.preventDefault();
         // setBuscar(true);
         setGifSugerido(gif)
-        setMostrarAutoCompletacion(false);
-        
+        setGif("");   
+
     }
     return (
         <div className={styles.App}>
@@ -104,7 +112,7 @@ const Busqueda = ({clickSugerido,setClickSugerido,clickNormal,setClickNormal,sug
                 </button>
             </form>
 
-                {/* {loading===true?<h1>Loading...</h1>:null} */}
+                
                 {/* ------------------------Bloque de autocompletado------------------------ */}
                 {mostrarAutoCompletacion === true? 
                 <div className={styles.autocompletacion}>
@@ -116,6 +124,8 @@ const Busqueda = ({clickSugerido,setClickSugerido,clickNormal,setClickNormal,sug
                 </div>
                 :
                 null}
+                {/* {loading===true?<h1>Loading...</h1>:null}  */}
+                {loading===true?<div className={styles.anonimo}><h1>Loading...</h1><div class="contener_general"> <div class="contener_mixte"><div class="ballcolor ball_1">&nbsp;</div></div> <div class="contener_mixte"><div class="ballcolor ball_2">&nbsp;</div></div> <div class="contener_mixte"><div class="ballcolor ball_3">&nbsp;</div></div> <div class="contener_mixte"><div class="ballcolor ball_4">&nbsp;</div></div> </div></div>:null} 
 
                  {/* <div>
                     {clickSugerido.map((item)=>{

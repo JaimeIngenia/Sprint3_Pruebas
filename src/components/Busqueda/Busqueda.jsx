@@ -41,7 +41,7 @@ const Busqueda = ({clickSugerido,setClickSugerido,clickNormal,setClickNormal,sug
         let url = fetch("https://api.giphy.com/v1/gifs/search/tags"+"?"+
         "api_key=nUNTIQy4xKKNgSXeNU5e11JARe54a9Lo"+"&"+
         "q="+gif)
-        setLoading(true);
+        // setLoading(true);
         url
             .then((res)=>{
                 return res.json();
@@ -50,7 +50,7 @@ const Busqueda = ({clickSugerido,setClickSugerido,clickNormal,setClickNormal,sug
                 console.log(datos);
                 datos.data.map((item)=>{
                     setSugerencias(datos.data);
-                    setLoading(false);
+                    // setLoading(false);
                     // console.log(item.name);
                 })
             })            

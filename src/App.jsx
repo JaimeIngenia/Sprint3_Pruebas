@@ -3,6 +3,7 @@ import Busqueda from "./components/Busqueda/Busqueda";
 import Header from "./components/header/Header";
 import styles from "./App.module.css"
 import Resultado from "./components/resultado/Resultado";
+import Alert from "./components/alert/Alert";
 
 
 function App() {
@@ -39,7 +40,7 @@ function App() {
       trending={trending}
       setTrending={setTrending}
       />
-
+      <Alert/>
     </div>
   );
 }
